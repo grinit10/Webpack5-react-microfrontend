@@ -1,11 +1,9 @@
 import React, { Suspense } from "react";
 import { Route, Switch, HashRouter } from "react-router-dom";
 import { ContainerApp } from "./components/ContainerApp";
-// import { createBrowserHistory } from "history";
 
 const CounterAppOne = React.lazy(() => import("app1/CounterAppOne"));
 const CounterAppTwo = React.lazy(() => import("app2/CounterAppTwo"));
-// const history = createBrowserHistory();
 
 const App = () => (
   <Suspense fallback={<div>Loading...</div>}>
