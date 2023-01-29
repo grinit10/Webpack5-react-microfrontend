@@ -26,8 +26,29 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(js|jsx|tsx|ts)$/,
-          loader: "ts-loader",
+          loader: "babel-loader",
           exclude: /node_modules/,
+          options: {
+            cacheDirectory: true,
+            babelrc: false,
+            presets: [
+              [
+                "@babel/preset-env",
+                { targets: { browsers: "last 2 versions" } },
+              ],
+              "@babel/preset-typescript",
+              ["@babel/preset-react", {"runtime": "automatic"}]
+            ],
+            plugins: [
+              "react-hot-loader/babel",
+              ["@babel/plugin-proposal-class-properties", { loose: true }],
+              [
+                "@babel/plugin-proposal-private-property-in-object",
+                { loose: true },
+              ],
+              ["@babel/plugin-proposal-private-methods", { loose: true }],
+            ],
+          },
         },
       ],
     },
