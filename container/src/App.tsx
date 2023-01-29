@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { Router, Route, Switch } from "react-router-dom";
+import { ContainerApp } from "./components/ContainerApp";
+import { createBrowserHistory } from "history";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const CounterAppOne = React.lazy(() => import("app1/CounterAppOne"));
+const CounterAppTwo = React.lazy(() => import("app2/CounterAppTwo"));
+const history = createBrowserHistory();
+
+const App = () => (
+  <Router history={history}>
+    <Switch>
+      <Route path="/">
+        <Suspense fallback={<div>Loading...</div>}>
+          <ContainerApp
+            CounterAppOne={CounterAppOne}
+            CounterAppTwo={CounterAppTwo}
+          />
+        </Suspense>
+      </Route>
+      <Route path="app1">
+        <Suspense fallback={<div>Loading...</div>}>
+          <CounterAppOne></CounterAppOne>
+        </Suspense>
+      </Route>
+      <Route path="app2">
+        <Suspense fallback={<div>Loading...</div>}>
+          <CounterAppTwo></CounterAppTwo>
+        </Suspense>
+      </Route>
+    </Switch>
+  </Router>
+);
 
 export default App;

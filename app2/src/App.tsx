@@ -1,4 +1,4 @@
-import { CounterAppTwo } from "./components/CounterAppTwo";
+import CounterAppTwo from "./components/CounterAppTwo";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Container, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
