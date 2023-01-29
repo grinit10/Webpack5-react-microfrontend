@@ -1,7 +1,9 @@
-import CounterAppOne from "./components/CounterAppOne";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Container, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
+import React from "react";
+
+const CounterAppOne = React.lazy(() => import("./components/CounterAppOne"));
 
 const App = () => (
   <CssBaseline>
